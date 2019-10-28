@@ -4,12 +4,11 @@ import os
 app = Flask(__name__)
 
 import generate
-def init():
-    global graph
-    graph = generate.load_graph('.', 'text_model')
 
-@app.route('/getmsg/', methods=['GET'])
-def respond():
+graph = generate.load_graph('.', 'text_model')
+
+@app.route('/')
+def index():
     return "<h1>Welcome to our server !!</h1>"
 
 @app.route('/result', methods=['GET'])
@@ -36,9 +35,9 @@ def post_something():
             "ERROR": "no name found, please send a name."
         })
 
+@app.route('/getmsg/', methods=['GET'])
+def respond():
 # A welcome message to test our server
-@app.route('/')
-def index():
     # Retrieve the name from url parameter
     name = request.args.get("name", None)
 
@@ -62,5 +61,4 @@ def index():
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
-    init()
     app.run(threaded=True, port=(int(os.environ.get("PORT", 5000))))
