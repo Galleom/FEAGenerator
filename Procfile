@@ -1,1 +1,1 @@
-web: gunicorn app:appheroku 
+web: gunicorn app:app
