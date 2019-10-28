@@ -34,7 +34,7 @@ def load_graph(models_dir, model_name, temperature=0.8, top_k=40,top_p=1,batch_s
 
         return enc, output, ckpt, hparams
 
-def predict(enc, ckpt, hparams, output, batch_size=1):
+def predict(enc, output, ckpt, hparams, batch_size=1):
     with tf.Session(graph=tf.Graph()) as sess:
 
         out = sess.run(output)
