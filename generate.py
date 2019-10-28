@@ -31,10 +31,15 @@ def load_graph(models_dir, model_name, temperature=0.8, top_k=40,top_p=1,batch_s
         saver = tf.train.Saver()
         ckpt = tf.train.latest_checkpoint(os.path.join(models_dir, model_name))
         saver.restore(sess, ckpt)
+        graph = (enc, output, ckpt, hparams, batch_size)
+        return graph
 
-        return enc, output, ckpt, hparams
-
-def predict(enc, output, ckpt, hparams, batch_size=1):
+def predict(graph):
+    enc=graph[0]
+    output=graph[1]
+    ckpt=graph[2]
+    hparams=graph[3]
+    batch_size=graph[4]
     with tf.Session(graph=tf.Graph()) as sess:
 
         out = sess.run(output)

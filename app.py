@@ -15,7 +15,7 @@ def respond():
 @app.route('/result', methods=['GET'])
 def get_something():
     return jsonify({
-        "Message": generate.predict(graph[0], graph[1], graph[2],graph [3]),
+        "Message": generate.predict(graph),
         # Add this option to distinct the POST request
         "METHOD" : "GET"
     })
