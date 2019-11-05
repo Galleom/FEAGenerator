@@ -27,7 +27,7 @@ def start_tf_sess(threads=1, server=None):
 def load_gpt2(sess,
               run_name="run1",
               model_name=None,
-              model_dir='models'):
+              model_dir='./'):
     """Loads the model checkpoint or existing model into a TensorFlow session
     for repeated predictions.
     """
@@ -51,7 +51,7 @@ def load_gpt2(sess,
 def generate(sess,
              run_name='run1',
              model_name=None,
-             model_dir='models',
+             model_dir='./',
              sample_dir='samples',
              return_as_list=False,
              truncate=None,
