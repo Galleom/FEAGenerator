@@ -1,16 +1,10 @@
 import os
 import json
-import requests
 import sys
-import shutil
 import re
-from tqdm import tqdm, trange
 import numpy as np
 import tensorflow as tf
 from tensorflow.core.protobuf import rewriter_config_pb2
-import time
-import csv
-import argparse
 import model, sample, encoder
 
 def start_tf_sess(threads=1, server=None):
