@@ -8,7 +8,7 @@ app = Flask(__name__)
 import generate
 
 sess = generate.start_tf_sess(threads=1)
-generate.load_gpt2(sess)
+generate.load_gpt2(sess, model_name="text_model")
 
 # Needed to avoid cross-domain issues
 response_header = {
