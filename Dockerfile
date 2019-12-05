@@ -1,17 +1,17 @@
-# Use the official lightweight Python image.
-# https://hub.docker.com/_/python
-FROM python:3.7-slim
+FROM python:3.7.3-slim-stretch
 
-# Copy local code to the container image.
-#ENV APP_HOME /app
-#WORKDIR $APP_HOME
-#COPY . ./
+RUN apt-get -y update && apt-get -y install gcc
 
-# Install production dependencies.
-RUN pip install Flask gunicorn
+WORKDIR /
+COPY checkpoint /checkpoint
 
-# Run the web service on container startup. Here we use the gunicorn
-# webserver, with one worker process and 8 threads.
-# For environments with multiple CPU cores, increase the number of workers
-# to be equal to the cores available.
-CMD exec web: gunicorn app:app --preload
+# Make changes to the requirements/app here.
+# This Dockerfile order allows Docker to cache the checkpoint layer
+# and improve build times if making changes.
+RUN pip3 --no-cache-dir install tensorflow gpt-2-simple starlette uvicorn ujson
+COPY app.py /
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENTRYPOINT ["python3", "-X", "utf8", "app.py"]
