@@ -9,6 +9,9 @@ WORKDIR /
 # This Dockerfile order allows Docker to cache the checkpoint layer
 # and improve build times if making changes.
 RUN pip3 --no-cache-dir install tensorflow gpt-2-simple starlette uvicorn ujson
+
+RUN pip install -r /requirements.txt
+
 COPY app.py /
 
 # Clean up APT when done.
