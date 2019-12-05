@@ -3,7 +3,7 @@ FROM python:3.7.3-slim-stretch
 RUN apt-get -y update && apt-get -y install gcc
 
 WORKDIR /
-COPY checkpoint /checkpoint
+# COPY checkpoint /checkpoint
 
 # Make changes to the requirements/app here.
 # This Dockerfile order allows Docker to cache the checkpoint layer
