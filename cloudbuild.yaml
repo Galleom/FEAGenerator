@@ -1,10 +1,10 @@
 substitutions:
   _BUCKET: <GCS_BUCKET>
-  _IMAGE: gpt2-api
+  _IMAGE: app
 steps:
-- name: 'gcr.io/cloud-builders/gsutil'
+- name: 'gcr.io/feagenerator/app'
   args: ['-m', 'cp', '-r', 'gs://$_BUCKET', '/workspace']
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/feagenerator/app'
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/$_IMAGE', '/workspace/$_BUCKET' ]
 images:
 - gcr.io/$PROJECT_ID/$_IMAGE
