@@ -84,4 +84,4 @@ def respond():
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
-    app.run(threaded=True, host='0.0.0.0', port=(int(os.environ.get("PORT", 8080))))
+    app.run(host='0.0.0.0', port=(int(os.environ.get("PORT", 8080))))
