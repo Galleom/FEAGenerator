@@ -1,9 +1,15 @@
 # app.py
-from flask import Flask, request, jsonify
+from starlette.applications import Starlette
+from starlette.responses import UJSONResponse
+import gpt_2_simple as gpt2
+import uvicorn
+
+
 import tensorflow as tf
 import os
 import gc
-app = Flask(__name__)
+
+app = Starlette(debug=False)
 
 import generate
 
@@ -20,6 +26,7 @@ generate_count = 0
 def index():
     global generate_count
     global sess
+    
     params = request.query_params
     text = generate.generate(sess,
                       length=1024,
@@ -84,4 +91,4 @@ def respond():
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
-    app.run(host='0.0.0.0', port=(int(os.environ.get("PORT", 8080))))
+    uvicorn.run(app, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
