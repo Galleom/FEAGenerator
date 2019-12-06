@@ -11,6 +11,10 @@ COPY models/text_model/ /models/text_model/
 RUN pip3 --no-cache-dir install tensorflow starlette uvicorn flask Flask request jsonify
 
 COPY app.py /
+COPY encoder.py /
+COPY generate.py /
+COPY model.py /
+COPY sample.py /
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
