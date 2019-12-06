@@ -10,7 +10,7 @@ COPY models/text_model/ /models/text_model/
 # Make changes to the requirements/app here.
 # This Dockerfile order allows Docker to cache the checkpoint layer
 # and improve build times if making changes.
-RUN pip3 --no-cache-dir install tensorflow starlette uvicorn flask Flask request jsonify
+RUN pip3 --no-cache-dir install tensorflow==1.14.0 starlette uvicorn flask Flask request jsonify
 
 COPY app.py app.py
 COPY encoder.py encoder.py
