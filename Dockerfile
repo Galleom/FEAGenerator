@@ -10,10 +10,6 @@ COPY models/text_model/ /models/text_model/
 # and improve build times if making changes.
 RUN pip3 --no-cache-dir install tensorflow gpt-2-simple starlette uvicorn flask Flask request jsonify
 
-COPY requirements.txt /tmp
-WORKDIR /tmp
-RUN pip install -r requirements.txt
-
 COPY app.py /
 
 # Clean up APT when done.
