@@ -2,8 +2,6 @@ FROM python:3.7.3-slim-stretch
 
 RUN apt-get -y update && apt-get -y install gcc
 
-EXPOSE 8080
-
 WORKDIR /
 COPY models/text_model/ /models/text_model/
 
