@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, jsonify
+from flask import Flask
 import tensorflow as tf
 import os
 import gc
@@ -41,8 +41,7 @@ async def homepage():
         
 
     gc.collect()
-    return jsonify({'text': text},
-                         headers=response_header)
+    return text, response_header
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
