@@ -22,14 +22,14 @@ generate_count = 0
 async def homepage():
     global generate_count
     global sess
-    
+    print(1)
     text = generate.generate(sess,
                       length=1024,
                       model_name="text_model",
                       include_prefix=False,
                       return_as_list=True
                          )[0]
-
+    print(2)
     generate_count += 1
     if generate_count == 8:
         # Reload model to prevent Graph/Session from going OOM
@@ -39,8 +39,9 @@ async def homepage():
         generate.load_gpt2(sess)
         generate_count = 0
         
-
+    print(3)
     gc.collect()
+    print(4)
     return text
 
 if __name__ == '__main__':
