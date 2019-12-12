@@ -1,12 +1,11 @@
 # app.py
-from starlette.applications import Starlette
-from starlette.responses import UJSONResponse
+from flask import Flask
 import tensorflow as tf
-import uvicorn
 import os
 import gc
 
-app = Starlette(debug=False)
+
+app = Flask(__name__)
 
 import generate
 
@@ -19,7 +18,7 @@ response_header = {
 }
 generate_count = 0
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 async def homepage(request):
     global generate_count
     global sess
@@ -47,4 +46,4 @@ async def homepage(request):
                          headers=response_header)
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
