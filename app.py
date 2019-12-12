@@ -19,11 +19,10 @@ response_header = {
 generate_count = 0
 
 @app.route('/')
-async def homepage(request):
+async def homepage():
     global generate_count
     global sess
     
-    params = request.query_params
     text = generate.generate(sess,
                       length=1024,
                       model_name="text_model",
