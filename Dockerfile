@@ -1,5 +1,7 @@
 FROM python:3.7.3-slim-stretch
 
+RUN apt-get -y update && apt-get -y install gcc
+
 # Copy local code to the container image.
 ENV APP_HOME /app
 WORKDIR $APP_HOME
