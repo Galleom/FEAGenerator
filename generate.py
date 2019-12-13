@@ -81,7 +81,7 @@ def generate(sess,
         prefix = None
     checkpoint_path = os.path.join(model_dir, model_name)
 
-    enc = encoder.get_encoder(model_name)
+    enc = encoder.get_encoder(model_name, model_dir)
     hparams = model.default_hparams()
     with open(os.path.join(checkpoint_path, 'hparams.json')) as f:
         hparams.override_from_dict(json.load(f))
