@@ -26,4 +26,4 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #ENTRYPOINT ["python3", "-X", "utf8", "app.py"]
 
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 1 app
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 1 app:app
