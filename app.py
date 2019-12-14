@@ -38,7 +38,7 @@ def homepage():
         generate_count = 0
         
     gc.collect()
-    return jsonify({'text': text},
+    return jsonify(txt: text,
                          headers=response_header)
 
 if __name__ == '__main__':
