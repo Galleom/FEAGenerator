@@ -1,11 +1,15 @@
 # app.py
-from flask import Flask, jsonify
+from starlette.applications import Starlette
+from starlette.responses import UJSONResponse
+from collections import Counter
+import gpt_2_simple as gpt2
 import tensorflow as tf
+import uvicorn
 import os
-import gc
+import re
+import requests
 
-
-app = Flask(__name__)
+app = Starlette(debug=False)
 
 import generate
 
@@ -19,7 +23,7 @@ response_header = {
 generate_count = 0
 
 @app.route('/')
-def homepage():
+async def homepage():
     global generate_count
     global sess
     text = generate.generate(sess,
@@ -37,9 +41,10 @@ def homepage():
         generate.load_gpt2(sess)
         generate_count = 0
         
-    gc.collect()
-    return jsonify(txt: text,
+    #gc.collect()
+    return UJSONResponse({'text': text},
                          headers=response_header)
 
+
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
+    uvicorn.run(app, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
