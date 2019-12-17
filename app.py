@@ -20,7 +20,7 @@ response_header = {
 generate_count = 0
 
 @app.route('/')
-async def homepage():
+async def homepage(request):
     global generate_count
     global sess
     text = generate.generate(sess,
