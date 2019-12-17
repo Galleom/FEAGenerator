@@ -2,7 +2,7 @@ FROM python:3.7.3-slim-stretch
 
 RUN apt-get -y update && apt-get -y install gcc
 
-COPY models/text_model/* /app/models/text_model/
+COPY models/text_model/* /models/text_model/
 
 # Make changes to the requirements/app here.
 # This Dockerfile order allows Docker to cache the checkpoint layer
