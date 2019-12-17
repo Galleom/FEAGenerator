@@ -2,12 +2,9 @@
 from starlette.applications import Starlette
 from starlette.responses import UJSONResponse
 from collections import Counter
-import gpt_2_simple as gpt2
 import tensorflow as tf
 import uvicorn
 import os
-import re
-import requests
 
 app = Starlette(debug=False)
 
