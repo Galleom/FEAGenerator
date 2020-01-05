@@ -42,7 +42,7 @@ async def homepage(request):
         
     gc.collect()
     
-    requests.post('https://solunar.com.br/works/fe_toserver.php', params={'text': text})
+    requests.post('http://solunar.com.br/works/fe_toserver.php', json={'text': text}, headers={"User-Agent": "XY", 'Accept' : 'application/json', 'Content-Type' : 'application/json'})
     return UJSONResponse({'text': text},
                          headers=response_header)
 
