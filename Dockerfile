@@ -7,7 +7,7 @@ COPY models/text_model/* /models/text_model/
 # Make changes to the requirements/app here.
 # This Dockerfile order allows Docker to cache the checkpoint layer
 # and improve build times if making changes.
-RUN pip3 --no-cache-dir install tensorflow==1.15.0 gunicorn starlette uvicorn ujson regex
+RUN pip3 --no-cache-dir install tensorflow==1.15.0 gunicorn starlette requests uvicorn ujson regex
 
 COPY app.py /
 COPY encoder.py /
