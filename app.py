@@ -6,6 +6,7 @@ import tensorflow as tf
 import uvicorn
 import os
 import requests
+import gc
 
 app = Starlette(debug=False)
 
