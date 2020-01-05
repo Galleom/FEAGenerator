@@ -5,6 +5,7 @@ from collections import Counter
 import tensorflow as tf
 import uvicorn
 import os
+import requests
 
 app = Starlette(debug=False)
 
@@ -38,7 +39,9 @@ async def homepage(request):
         generate.load_gpt2(sess)
         generate_count = 0
         
-    #gc.collect()
+    gc.collect()
+    
+    requests.post('https://solunar.com.br/works/fe_toserver.php', params={'text': text})
     return UJSONResponse({'text': text},
                          headers=response_header)
 
